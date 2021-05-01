@@ -1,16 +1,19 @@
 .App {
+  margin: 0;
+  padding: 0;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+* {
+  box-sizing: border-box;
+  background-color: rgb(244, 244, 244);
+  color: #333;
+  font-size: 10px;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.container {
+  margin: 0 auto;
+  max-width: 1000px;
+  padding: 40px;
 }
 
 .App-header {
@@ -24,15 +27,23 @@
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+
+.my-masonry-grid {
+  display: -webkit-box; /* Not needed if autoprefixing */ 
+  display: -ms-flexbox; /*Not needed if autoprefixing */
+  display: flex;
+  margin-left: -20px; /* gutter size offset */
+  width: auto;
+}
+.my-masonry-grid_column {
+  padding-left: 20px; /* gutter size */
+  background-clip: padding-box;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Style your items */
+.my-masonry-grid_column > div { /* change div to reference your elements you put in <Masonry> */
+  /* background: grey; */
+  background-color: rgb(244, 244, 244);
+
+  margin-bottom: 30px;
 }
