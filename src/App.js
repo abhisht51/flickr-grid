@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import GetPhotos from "./components/GetPhotos"; 
-import FetchData from "./components/DataFetch"; 
+import FetchData from "./components/FetchData"; 
 import "./App.css";
 
 function App() {
