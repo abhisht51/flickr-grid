@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Masonry from "react-masonry-css";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Image from "./Image";
+import Loading from './Loading'
 
 import "./masonry.css";
 
@@ -34,8 +35,10 @@ const FetchData = ({ tag }) => {
       });
   };
   useEffect(() => {
+    if(tag.length>0){
     fetchImages(tag);
     window.history.replaceState(null, "New Page Title", `?query=${tag}`);
+    }
     // eslint-disable-next-line
   }, [tag]);
 
@@ -64,7 +67,7 @@ const FetchData = ({ tag }) => {
           dataLength={picture.length}
           next={() => loadMoreImages(pageNumber)}
           hasMore={true}
-          loader={<h4>Loading More Images...</h4>}
+          loader={<Loading/>}
         >
           <h1 className="search-text">Images for {tag}</h1>;
           <Masonry
