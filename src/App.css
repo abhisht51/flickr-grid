@@ -16,6 +16,11 @@
   padding: 40px;
 }
 
+.title {
+  font-size: 4.4rem;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -27,9 +32,8 @@
   color: white;
 }
 
-
 .my-masonry-grid {
-  display: -webkit-box; /* Not needed if autoprefixing */ 
+  display: -webkit-box; /* Not needed if autoprefixing */
   display: -ms-flexbox; /*Not needed if autoprefixing */
   display: flex;
   margin-left: -20px; /* gutter size offset */
@@ -41,7 +45,8 @@
 }
 
 /* Style your items */
-.my-masonry-grid_column > div { /* change div to reference your elements you put in <Masonry> */
+.my-masonry-grid_column > div {
+  /* change div to reference your elements you put in <Masonry> */
   /* background: grey; */
   background-color: rgb(244, 244, 244);
 

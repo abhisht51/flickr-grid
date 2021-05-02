@@ -5,7 +5,7 @@ const Image = ({ imageSrc }) => {
     <div>
       <img
         src={imageSrc}
-        className="img-fluid "
+        className="img-fluid"
         alt="okay"
         width="90%"
         height="90%"
