@@ -12,9 +12,7 @@ function App() {
 
 
 
-  // const loadMoreImages = () => {
-  //   console.log("clicked");
-  // };
+  
   return (
     <div className="App">
       <div className="container">

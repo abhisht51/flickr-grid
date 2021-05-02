@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import Masonry from "react-masonry-css";
+import InfiniteScroll from "react-infinite-scroll-component";
 import Image from "./Image";
 
-const FetchData = ({ tag, pageNumber }) => {
+const FetchData = ({ tag }) => {
   const [picture, setPictures] = useState([]);
+  const [pageNumber, setPageNumber] = useState(1);
 
   const breakpointColumnsObj = {
     default: 3,
@@ -23,8 +25,8 @@ const FetchData = ({ tag, pageNumber }) => {
           imageId: imageObj.id,
         }));
         setPictures([...mapped]);
-        
-        console.log('hello',picture);
+        setPageNumber(1);
+        console.log("hello", picture);
       })
       .catch((err) => {
         console.log(err);
@@ -33,22 +35,59 @@ const FetchData = ({ tag, pageNumber }) => {
   useEffect(() => {
     fetchImages(tag);
     window.history.replaceState(null, "New Page Title", `?query=${tag}`);
+    // eslint-disable-next-line
   }, [tag]);
 
+  const loadMoreImages = (pageNumber) => {
+    setPageNumber(++pageNumber);
+    console.log(pageNumber);
+    fetch(
+      `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${process.env.REACT_APP_API_KEY}&text=${tag}&media=photos&per_page=12&page=${pageNumber}&format=json&nojsoncallback=1`
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        let mapped = data.photos.photo.map((imageObj) => ({
+          imageSrc: `https://farm${imageObj.farm}.staticflickr.com/${imageObj.server}/${imageObj.id}_${imageObj.secret}.jpg`,
+          imageId: imageObj.id,
+        }));
+        setPictures([...picture, ...mapped]);
+
+        console.log(pageNumber, "hello", picture);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   return (
     <div className="row">
       <h1>{tag}</h1>
-      {
-        tag.length > 0 ? <Masonry
-        breakpointCols={breakpointColumnsObj}
-        className="my-masonry-grid"
-        columnClassName="my-masonry-grid_column"
+      {(tag.length && picture.length) > 0 ? (
+        <InfiniteScroll
+          dataLength={picture.length}
+          next={() => loadMoreImages(pageNumber)}
+          hasMore={true}
+          loader={<h4>Loading More Images...</h4>}
+        >
+          <Masonry
+            breakpointCols={breakpointColumnsObj}
+            className="my-masonry-grid"
+            columnClassName="my-masonry-grid_column"
+          >
+            {picture.map((image) => (
+              <Image key={image.imageId} {...image} />
+            ))}
+          </Masonry>
+        </InfiniteScroll>
+      ) : (
+        "No Images to show"
+      )}
+      <button
+        onClick={() => {
+          loadMoreImages(pageNumber);
+        }}
       >
-        {picture.map((image) => (
-          <Image key={image.imageId} {...image} />
-        ))}
-      </Masonry> : 'No Images to show'
-      }
+        load More
+      </button>
     </div>
   );
 };
