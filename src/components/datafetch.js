@@ -3,7 +3,7 @@ import Masonry from "react-masonry-css";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Image from "./Image";
 
-import './masonry.css'
+import "./masonry.css";
 
 const FetchData = ({ tag }) => {
   const [picture, setPictures] = useState([]);
@@ -52,7 +52,6 @@ const FetchData = ({ tag }) => {
           alt: imageObj.title,
         }));
         setPictures([...picture, ...mapped]);
-
       })
       .catch((err) => {
         console.log(err);
@@ -67,7 +66,7 @@ const FetchData = ({ tag }) => {
           hasMore={true}
           loader={<h4>Loading More Images...</h4>}
         >
-          <h1 className="search-text">Images for {tag}</h1>
+          <h1 className="search-text">Images for {tag}</h1>;
           <Masonry
             breakpointCols={breakpointColumnsObj}
             className="my-masonry-grid"
