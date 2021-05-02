@@ -1,14 +1,14 @@
 import React from "react";
 
-const Image = ({ imageSrc }) => {
+const Image = ({ imageSrc, alt }) => {
   return (
     <div>
       <img
         src={imageSrc}
-        className="img-fluid"
-        alt="okay"
-        width="90%"
-        height="90%"
+        className="card--image"
+        alt={alt}
+        width="100%"
+        height="100%"
       ></img>
     </div>
   );

@@ -3,6 +3,8 @@ import Masonry from "react-masonry-css";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Image from "./Image";
 
+import './masonry.css'
+
 const FetchData = ({ tag }) => {
   const [picture, setPictures] = useState([]);
   const [pageNumber, setPageNumber] = useState(1);
@@ -26,7 +28,6 @@ const FetchData = ({ tag }) => {
         }));
         setPictures([...mapped]);
         setPageNumber(1);
-        console.log("hello", picture);
       })
       .catch((err) => {
         console.log(err);
@@ -40,7 +41,6 @@ const FetchData = ({ tag }) => {
 
   const loadMoreImages = (pageNumber) => {
     setPageNumber(++pageNumber);
-    console.log(pageNumber);
     fetch(
       `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${process.env.REACT_APP_API_KEY}&text=${tag}&media=photos&per_page=12&page=${pageNumber}&format=json&nojsoncallback=1`
     )
@@ -49,10 +49,10 @@ const FetchData = ({ tag }) => {
         let mapped = data.photos.photo.map((imageObj) => ({
           imageSrc: `https://farm${imageObj.farm}.staticflickr.com/${imageObj.server}/${imageObj.id}_${imageObj.secret}.jpg`,
           imageId: imageObj.id,
+          alt: imageObj.title,
         }));
         setPictures([...picture, ...mapped]);
 
-        console.log(pageNumber, "hello", picture);
       })
       .catch((err) => {
         console.log(err);
@@ -60,7 +60,6 @@ const FetchData = ({ tag }) => {
   };
   return (
     <div className="row">
-      <h1>{tag}</h1>
       {(tag.length && picture.length) > 0 ? (
         <InfiniteScroll
           dataLength={picture.length}
@@ -68,6 +67,7 @@ const FetchData = ({ tag }) => {
           hasMore={true}
           loader={<h4>Loading More Images...</h4>}
         >
+          <h1 className="search-text">Images for {tag}</h1>
           <Masonry
             breakpointCols={breakpointColumnsObj}
             className="my-masonry-grid"
@@ -81,13 +81,6 @@ const FetchData = ({ tag }) => {
       ) : (
         "No Images to show"
       )}
-      <button
-        onClick={() => {
-          loadMoreImages(pageNumber);
-        }}
-      >
-        load More
-      </button>
     </div>
   );
 };

@@ -7,7 +7,7 @@ const GetPhotos = ({onAdd}) => {
     const searchImages = async (e) => {
         e.preventDefault();
         if(!tag){
-            alert('Please add a tag');
+            alert('Please add a search text');
             return
         }
         onAdd({tag})
@@ -17,7 +17,6 @@ const GetPhotos = ({onAdd}) => {
         <>
       <form className="form" onSubmit={searchImages}> 
         <label className="label" htmlFor="query"> 
-          {/* {""} */}
           🔍
         </label>
         <input
@@ -29,7 +28,7 @@ const GetPhotos = ({onAdd}) => {
           onChange={(e)=>setTag(e.target.value)}
         />
         <button type="submit" className="button" >
-          Search
+        Search
         </button>
       </form >
     </>

@@ -1,20 +1,18 @@
-.card-list {
-  column-count: 3;
-}
-.card {
-  margin-bottom: 1rem;
-  display: flex;
-}
-
-.card--image {
-  flex: 100%;
-  margin-top: 1rem;
-  border-radius: 10px;
-}
-
-
-@media only screen and (max-width: 600px) {
-  .card-list {
-    column-count: 1;
+/* Masonry CSS */
+.my-masonry-grid {
+    display: -webkit-box; /* Not needed if autoprefixing */
+    display: -ms-flexbox; /*Not needed if autoprefixing */
+    display: flex;
+    margin-left: -20px; /* gutter size offset */
+    width: auto;
   }
-}
+  .my-masonry-grid_column {
+    padding-left: 20px; /* gutter size */
+    background-clip: padding-box;
+  }
+  .my-masonry-grid_column > div {
+    background-color: rgb(244, 244, 244);
+    margin-bottom: 30px;
+  }
+  
+  

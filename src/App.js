@@ -1,7 +1,7 @@
 import { useState } from "react";
 
-import GetPhotos from "./components/getPhotos"; 
-import FetchData from "./components/fetchData"; 
+import GetPhotos from "./components/GetPhotos"; 
+import FetchData from "./components/FetchData"; 
 import "./App.css";
 
 function App() {
@@ -9,10 +9,6 @@ function App() {
   const addTag = (tag) => {
     setTag(tag.tag);
   }
-
-
-
-  
   return (
     <div className="App">
       <div className="container">

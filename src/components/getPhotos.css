@@ -1,6 +1,6 @@
 .form {
   display: grid;
-  grid-template-columns: auto 1fr auto;
+  /* grid-template-columns: auto 1fr auto; */
   padding-bottom: 2em;
 }
 
@@ -32,13 +32,23 @@
 .button:hover {
   background-color: rgba(0, 0, 0, 0.85);
 }
-@media (min-width: 200px) {
+@media (min-width: 150px) {
   .form {
     grid-template-columns: auto 1fr auto;
-    grid-gap: .5rem;
+    grid-gap: 0.5rem;
     align-items: center;
   }
   .input {
     margin-bottom: 0;
+    outline: none;
+  }
+}
+
+@media (max-width:400px){
+  .form{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
   }
 }
