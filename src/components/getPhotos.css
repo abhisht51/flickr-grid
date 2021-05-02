@@ -1,7 +1,6 @@
 .form {
   display: grid;
-  /* grid-template-columns: auto 1fr auto; */
-  padding-bottom: 2em;
+  padding: 2em;
 }
 
 .label {
@@ -32,7 +31,7 @@
 .button:hover {
   background-color: rgba(0, 0, 0, 0.85);
 }
-@media (min-width: 150px) {
+@media (min-width: 400px) {
   .form {
     grid-template-columns: auto 1fr auto;
     grid-gap: 0.5rem;
@@ -44,7 +43,7 @@
   }
 }
 
-@media (max-width:400px){
+@media (max-width:500px){
   .form{
     display: flex;
     flex-wrap: wrap;
